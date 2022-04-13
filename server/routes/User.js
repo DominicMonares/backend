@@ -58,15 +58,14 @@ router.post("/addNewUser", async (req, res) => {
       res.send(err);
     }
   }
+});
 
-  // compare input pw to hashed pw
-  // const password = await bcrypt.compare(req.body.password, hashedPassword, (err, hash) => {
-  //   if (err) {
-  //     console.log('ERR ', err);
-  //   } else {
-  //     console.log('RES ', hash);
-  //   }
-  // })
+router.post("/twitterUser", async (req, res) => {
+  res.send('AYY');
+});
+
+router.post("/googleUser", async (req, res) => {
+  res.send('YOO');
 });
 
 router.post("/followUser", async (req, res) => {
