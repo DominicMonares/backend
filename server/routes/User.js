@@ -12,8 +12,6 @@ const {
   changeProfilePhoto,
 } = require("../../database/controllers/User");
 
-const googleAuth = require('../../auth/Google');
-
 //GET REQUESTS
 
 //request parameteer must include username --- returns userInfo (user metadata and posts)
@@ -44,7 +42,7 @@ router.get("/auth/google", passport.authenticate('google', {
   scope: [ 'profile', 'email' ]
 }));
 
-router.get('/auth/google/account', passport.authenticate('google', {
+router.get("/auth/google/account", passport.authenticate('google', {
   failureRedirect: '/user/google/error', failureMessage: true}),
   async (req, res) => {
     console.log('REDIRECT TO HOME TRIGGERED')
@@ -52,16 +50,28 @@ router.get('/auth/google/account', passport.authenticate('google', {
   }
 );
 
-router.get('/auth/google/error', (req, res) => {
+router.get("/auth/google/error", (req, res) => {
   console.log('ERROR TRIGGERED');
   res.send('Auth Error');
 });
 
 //TWITTER
-router.get("/twitterUser", async (req, res) => {
+router.get("/auth/twitter", passport.authenticate('twitter', {
+  scope: [ 'profile', 'email' ]
+}));
 
-  res.send('AYY');
-});
+router.get("/auth/twitter/account", passport.authenticate('twitter', {
+  failureRedirect: 'user/twitter/error', failureMessage: true}),
+  async (req, res) => {
+    console.log('REDIRECT TO HOME TRIGGERED');
+    res.redirect('/');
+  }
+)
+
+router.get("auth/twitter/error", async (req, res) => {
+  console.log('ERROR TRIGGERED');
+  res.send('Auth Error');
+})
 
 //POST REQUESTS
 
