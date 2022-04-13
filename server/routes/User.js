@@ -40,18 +40,20 @@ router.get("/getUserMeta/:username", async (req, res) => {
 });
 
 //GOOGLE
-router.get("/googleUser", passport.authenticate('google', {
+router.get("/auth/google", passport.authenticate('google', {
   scope: [ 'profile', 'email' ]
 }));
 
-router.get('/account/google', passport.authenticate('google', {
-  failureRedirect: '/googleUser/error', failureMessage: true}),
+router.get('/auth/google/account', passport.authenticate('google', {
+  failureRedirect: '/user/google/error', failureMessage: true}),
   async (req, res) => {
+    console.log('REDIRECT TO HOME TRIGGERED')
     res.redirect('/');
   }
 );
 
-router.get('/googleUser/error', (req, res) => {
+router.get('/auth/google/error', (req, res) => {
+  console.log('ERROR TRIGGERED');
   res.send('Auth Error');
 });
 
