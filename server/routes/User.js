@@ -1,5 +1,7 @@
 const express = require("express");
 const bcrypt = require("bcryptjs");
+const passport = require('passport');
+require('../../passport.js');
 const router = express.Router();
 
 const {
@@ -9,6 +11,8 @@ const {
   getUserMeta,
   changeProfilePhoto,
 } = require("../../database/controllers/User");
+
+const googleAuth = require('../../auth/Google');
 
 //GET REQUESTS
 
@@ -35,6 +39,29 @@ router.get("/getUserMeta/:username", async (req, res) => {
   }
 });
 
+//GOOGLE
+router.get("/googleUser", passport.authenticate('google', {
+  scope: [ 'profile', 'email' ]
+}));
+
+router.get('/account/google', passport.authenticate('google', {
+  failureRedirect: '/googleUser/error', failureMessage: true}),
+  async (req, res) => {
+    console.log('ARE YOU THERE GOD? ITS ME, HOWARD');
+    res.redirect('/');
+  }
+);
+
+router.get('/googleUser/error', (req, res) => {
+  res.send('Auth Error');
+});
+
+//TWITTER
+router.get("/twitterUser", async (req, res) => {
+
+  res.send('AYY');
+});
+
 //POST REQUESTS
 
 //input must be in form {username, email, password} -- returns username
@@ -58,14 +85,6 @@ router.post("/addNewUser", async (req, res) => {
       res.send(err);
     }
   }
-});
-
-router.post("/twitterUser", async (req, res) => {
-  res.send('AYY');
-});
-
-router.post("/googleUser", async (req, res) => {
-  res.send('YOO');
 });
 
 router.post("/followUser", async (req, res) => {
