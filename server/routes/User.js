@@ -47,7 +47,6 @@ router.get("/googleUser", passport.authenticate('google', {
 router.get('/account/google', passport.authenticate('google', {
   failureRedirect: '/googleUser/error', failureMessage: true}),
   async (req, res) => {
-    console.log('ARE YOU THERE GOD? ITS ME, HOWARD');
     res.redirect('/');
   }
 );
