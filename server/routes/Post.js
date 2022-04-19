@@ -36,8 +36,8 @@ router.post("/uploadPost", async (req, res) => {
 //input must be in form {postID, username, comment} -- returns username
 router.post("/comment", async (req, res) => {
   try {
-    const { postID, username, comment } = req.body;
-    await commentOnPost(postID, username, comment);
+    const { postID, username, profPhoto, comment } = req.body;
+    await commentOnPost(postID, username, profPhoto, comment);
     res.send("comment successfully inserted");
   } catch (err) {
     res.send(err);
