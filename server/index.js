@@ -16,11 +16,7 @@ require ('../config/passport');
 const db = require("../database");
 
 require ('../config/passport');
-<<<<<<< HEAD
 app.use(passport.initialize());
-=======
-app.use (passport.initialize());
->>>>>>> 26b1682 (Made some changes how comment data is formated)
 
 const MongoStore = require ('connect-mongo')(session);
 
