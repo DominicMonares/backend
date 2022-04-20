@@ -77,7 +77,7 @@ app.get('/login', (req, res) => {
 })
 
 app.get('/success', (req, res) => {
-  res.redirect(`exp://10.0.0.251:19000?username=${req.user}`);
+  res.redirect(`exp://10.0.0.251:19000?username=${req.user.username}`);
 })
 
 io.on("connection", (socket) => {
