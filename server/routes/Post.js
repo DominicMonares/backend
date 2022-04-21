@@ -4,8 +4,7 @@ const router = express.Router();
 const {
   uploadPost,
   getDiscoveryPosts,
-  commentOnPost,
-  notification,
+  commentOnPost
 } = require("../../database/controllers/Post");
 
 //GET REQUESTS

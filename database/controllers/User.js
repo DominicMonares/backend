@@ -46,7 +46,7 @@ const followUser = async (currentUserID, otherID) => {
   });
 };
 
-const notification = async (fromuser, touser, url, caption) => {
+const postNotification = async (fromuser, touser, url, caption) => {
   // console.log('all', fromuser, touser, url, caption);
   const notificationInfo = new Notification({
     fromuser: fromuser.toLowerCase(),
@@ -63,11 +63,21 @@ const notification = async (fromuser, touser, url, caption) => {
   });
 };
 
+const getNotification = async () => {
+  try {
+    const notificationInfo = await Notification.find().limit(5);
+    return notificationInfo;
+  } catch (err) {
+    return err;
+  }
+}
+
 module.exports = {
   addNewUser,
   getUser,
   followUser,
   getUserMeta,
   changeProfilePhoto,
-  notification,
+  postNotification,
+  getNotification
 };
