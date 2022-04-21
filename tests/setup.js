@@ -27,8 +27,12 @@ const initializePosts = async () => {
 }
 
 const initialize = async () => {
-  await initializeUsers();
-  await initializePosts();
+  try {
+    await initializeUsers();
+    await initializePosts();
+  } catch (err) {
+    console.log(err)
+  }
 }
 
 const clear = async () => {
