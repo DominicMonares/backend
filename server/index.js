@@ -21,7 +21,8 @@ app.use(passport.initialize());
 const MongoStore = require ('connect-mongo')(session);
 
 
-const dbString = `${process.env.uri}/sessions`;
+const dbString = process.env.sessionUri;
+// const dbString = `${process.env.uri}/sessions`;
 const dbOptions = {
   useNewUrlParser: true,
   useUnifiedTopology:true
