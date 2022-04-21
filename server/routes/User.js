@@ -6,7 +6,6 @@ const router = express.Router();
 // const genPassword = require ('../../lib/passwordUtils.js').genPassword;
 const User = require('../../database/models/User');
 
-
 const {
   addNewUser,
   getUser,
