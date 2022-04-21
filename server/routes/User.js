@@ -6,14 +6,14 @@ const router = express.Router();
 // const genPassword = require ('../../lib/passwordUtils.js').genPassword;
 const User = require('../../database/models/User');
 
-
 const {
   addNewUser,
   getUser,
   followUser,
   getUserMeta,
   changeProfilePhoto,
-  notification,
+  postNotification,
+  getNotification
 } = require("../../database/controllers/User");
 
 const { transport } = require("../../nodemailer");
@@ -146,7 +146,7 @@ router.patch("/profPhoto", async (req, res) => {
 router.post("/screenshot", async (req, res) => {
   try {
     const { fromuser, touser, url, caption } = req.body;
-    const newNotification = await notification(fromuser, touser, url, caption);
+    const newNotification = await postNotification(fromuser, touser, url, caption);
     res.status(200).json(newNotification)
     // console.log(newNotification)
   } catch (err) {
@@ -154,5 +154,14 @@ router.post("/screenshot", async (req, res) => {
     // console.log(err);
   }
 });
+
+router.get("/notifications", async (req, res) => {
+  try {
+    const notifications = await getNotification();
+    res.send(notifications);
+  } catch (err) {
+    res.status(400).send(err);
+  }
+})
 
 module.exports = router;

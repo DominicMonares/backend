@@ -21,7 +21,8 @@ app.use(passport.initialize());
 const MongoStore = require ('connect-mongo')(session);
 
 
-const dbString = 'mongodb://localhost:27017/sessions';
+const dbString = process.env.sessionUri;
+// const dbString = `${process.env.uri}/sessions`;
 const dbOptions = {
   useNewUrlParser: true,
   useUnifiedTopology:true
@@ -77,7 +78,7 @@ app.get('/login', (req, res) => {
 })
 
 app.get('/success', (req, res) => {
-  res.redirect(`exp://10.0.0.251:19000?username=${req.user}`);
+  res.redirect(`exp://10.0.0.251:19000?username=${req.user.username}`);
 })
 
 io.on("connection", (socket) => {
