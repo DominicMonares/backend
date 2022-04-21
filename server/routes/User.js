@@ -86,7 +86,7 @@ router.post("/addNewUser", async (req, res) => {
 
   try {
     const newUser = await addNewUser(user);
-    const validatedURL = `http://127.0.0.1:3000/user/validate/${newUser._id}`;
+    const validatedURL = `http://54.215.206.56/user/validate/${newUser._id}`;
 
     let mailOptions = {
       from: process.env.GMAIL_USER,
