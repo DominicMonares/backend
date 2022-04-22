@@ -94,7 +94,7 @@ passport.use(new GoogleStrategy({
 passport.use(new TwitterStrategy({
   consumerKey: process.env.TWITTER_CONSUMER_KEY,
   consumerSecret: process.env.TWITTER_CONSUMER_SECRET,
-  callbackURL: 'http://localhost:3000/user/auth/twitter/callback',
+  callbackURL: 'http://54.215.206.56/user/auth/twitter/callback',
   userProfileURL: 'https://api.twitter.com/1.1/account/verify_credentials.json?include_email=true',
 },
   function (token, tokenSecret, profile, cb) {

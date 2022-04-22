@@ -13,7 +13,8 @@ const {
   getUserMeta,
   changeProfilePhoto,
   postNotification,
-  getNotification
+  getNotification,
+  validateUser
 } = require("../../database/controllers/User");
 
 const { transport } = require("../../nodemailer");
@@ -102,7 +103,7 @@ router.post("/addNewUser", async (req, res) => {
 
     transport.sendMail(mailOptions, (err, result) => {
       if (err) {
-        // res.send(err);
+        res.send(err);
       } else {
         transport.close();
       }
