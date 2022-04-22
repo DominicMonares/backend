@@ -22,7 +22,7 @@ const MongoStore = require ('connect-mongo')(session);
 
 
 
-const dbString = `${process.env.uri}/sessions`;
+const dbString = process.env.sessionUri;
 const dbOptions = {
   useNewUrlParser: true,
   useUnifiedTopology:true
