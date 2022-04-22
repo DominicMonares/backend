@@ -5,6 +5,7 @@ const bcrypt = require("bcryptjs");
 const router = express.Router();
 // const genPassword = require ('../../lib/passwordUtils.js').genPassword;
 const User = require('../../database/models/User');
+const emailTemplate = require('../../config/emailTemplate.js');
 
 const {
   addNewUser,
@@ -70,7 +71,7 @@ router.get("/auth/twitter/terms", (req, res) => {
   res.send('Terms of service and privacy policy here');
 });
 
-router.get('/login/federated/google', passport.authenticate('google'));
+router.get('c', passport.authenticate('google'));
 
 //POST REQUESTS
 
@@ -93,12 +94,7 @@ router.post("/addNewUser", async (req, res) => {
       from: process.env.GMAIL_USER,
       to: newUser.email,
       subject: 'PetPix Account Verification',
-      html: `
-        <div>
-          <p>Welcome to PetPix! Please verify your account.</p>
-          <button>${validatedURL}</button>
-        </div>
-      `
+      html: emailTemplate(validatedURL)
     }
 
     transport.sendMail(mailOptions, (err, result) => {
