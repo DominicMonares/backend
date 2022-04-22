@@ -63,9 +63,9 @@ const postNotification = async (fromuser, touser, url, caption) => {
   });
 };
 
-const getNotification = async () => {
+const getNotification = async (username) => {
   try {
-    const notificationInfo = await Notification.find().limit(5);
+    const notificationInfo = await Notification.find({ touser: username }).limit(5);
     return notificationInfo;
   } catch (err) {
     return err;
