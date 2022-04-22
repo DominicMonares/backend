@@ -3,8 +3,9 @@ const Post = require("../models/Post");
 //possibly add .lean() in the future
 
 const uploadPost = async (postData) => {
+  const username = postData.username.toLowerCase();
   const post = new Post({
-    username: postData.username || null,
+    username: username || null,
     profPhoto: postData.profPhoto || null,
     location: postData.location || null,
     url: postData.url,
