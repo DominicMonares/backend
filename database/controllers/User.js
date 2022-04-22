@@ -70,6 +70,10 @@ const getNotification = async () => {
   } catch (err) {
     return err;
   }
+};
+
+const validateUser = async (id) => {
+  await User.findByIdAndUpdate(id, { active: true })
 }
 
 module.exports = {
@@ -79,5 +83,6 @@ module.exports = {
   getUserMeta,
   changeProfilePhoto,
   postNotification,
-  getNotification
+  getNotification,
+  validateUser
 };
