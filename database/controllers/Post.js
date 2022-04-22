@@ -5,7 +5,7 @@ const Post = require("../models/Post");
 const uploadPost = async (postData) => {
   const username = postData.username.toLowerCase();
   const post = new Post({
-    username: username || null,
+    username: username,
     profPhoto: postData.profPhoto || null,
     location: postData.location || null,
     url: postData.url,
