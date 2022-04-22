@@ -17,7 +17,8 @@ const {
 const {
   uploadPost,
   getDiscoveryPosts,
-  commentOnPost
+  commentOnPost,
+  getUserPosts
 } = require("../database/controllers/Post");
 
 
@@ -65,15 +66,13 @@ describe('User Tests', () => {
   })
 
   test('Test followUser', () => {
-
   });
 
   test('Test postNotification', () => {
-
   });
 
   test('Test getNotification', () => {
-
+    
   });
 });
 
@@ -99,11 +98,21 @@ describe('Post Tests', () => {
   });
 
   test('Test getUserPosts', () => {
-
+    let response = getUserPosts('troyqyang');
+    response.then((response) => {
+      let addedPost = response[0];
+      expect(addedPost.username).toBe('troyqyang');
+      expect(addedPost.profPhoto).toBe('https://placeimg.com/100/100/animals');
+      expect(addedPost.caption).toBe('test caption');
+    })
+    // console.log('the test', response);
   });
 
   test('Test getDiscoveryPosts', () => {
-
+    let response = getDiscoveryPosts(1, 0);
+    response.then((response) => {
+      expect(response.length).toBe(1);
+    })
   });
 
   test('Test commentOnPost', () => {
