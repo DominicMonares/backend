@@ -157,6 +157,7 @@ router.post("/screenshot", async (req, res) => {
 });
 
 router.get("/notifications", async (req, res) => {
+  let username = req.query.touser;
   try {
     const notifications = await getNotification();
     res.send(notifications);
