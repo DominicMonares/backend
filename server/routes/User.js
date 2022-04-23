@@ -94,7 +94,7 @@ router.post("/addNewUser", async (req, res) => {
       from: process.env.GMAIL_USER,
       to: newUser.email,
       subject: 'PetPix Account Verification',
-      html: emailTemplate(validatedURL);
+      html: emailTemplate(validatedURL)
     }
 
     transport.sendMail(mailOptions, (err, result) => {
