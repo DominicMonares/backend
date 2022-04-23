@@ -5,6 +5,12 @@ const initData = {
       email: 'troy.q.yang@gmail.com',
       password: 'password',
       profPhoto: 'https://placeimg.com/100/100/animals'
+    },
+    {
+      username: 'josephnahm1',
+      email: 'josephnahm@gmail.com',
+      password: 'password',
+      profPhoto: 'https://placeimg.com/100/100/animals'
     }
   ],
   posts: [

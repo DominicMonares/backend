@@ -2,6 +2,7 @@ const bcrypt = require('bcryptjs');
 const db = require("../database");
 const User = require('../database/models/User');
 const Post = require('../database/models/Post');
+const Notification = require('../database/models/Notification')
 
 const { initUsers, initPosts } = require('./data.js');
 
@@ -38,6 +39,7 @@ const initialize = async () => {
 const clear = async () => {
   await User.deleteMany({});
   await Post.deleteMany({});
+  await Notification.deleteMany({});
 }
 
 const setup = () => {

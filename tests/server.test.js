@@ -3,6 +3,7 @@ const { setup } = require('./setup.js');
 const db = require('../database/index');
 const User = require('../database/models/User');
 const Post = require('../database/models/Post');
+const Notification = require('../database/models/Notification')
 
 const {
   addNewUser,
@@ -65,14 +66,15 @@ describe('User Tests', () => {
     expect(user.profPhoto).toBe('https://cdn.wallpapersafari.com/66/93/G5flu7.png');
   })
 
-  test('Test followUser', () => {
-  });
+  test('Test followUser', async () => {
+    let userOne = await User.find({ username: 'troyqyang' });
+    let userTwo = await User.find({ username: 'josephnahm1' });
+    await followUser(userOne[0]._id, userTwo[0]._id);
 
-  test('Test postNotification', () => {
-  });
-
-  test('Test getNotification', () => {
-    
+    let newUserOne = await User.find({ _id: userOne[0]._id });
+    let newUserTwo = await User.find({ _id: userTwo[0]._id });
+    expect(newUserOne[0].following[0] === userTwo[0]._id);
+    expect(newUserTwo[0].followers[0] === userOne[0]._id);
   });
 });
 
@@ -105,7 +107,6 @@ describe('Post Tests', () => {
       expect(addedPost.profPhoto).toBe('https://placeimg.com/100/100/animals');
       expect(addedPost.caption).toBe('test caption');
     })
-    // console.log('the test', response);
   });
 
   test('Test getDiscoveryPosts', () => {
@@ -113,9 +114,5 @@ describe('Post Tests', () => {
     response.then((response) => {
       expect(response.length).toBe(1);
     })
-  });
-
-  test('Test commentOnPost', () => {
-
   });
 });
